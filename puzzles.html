@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>puzzle</title>
+	<style>
+		body{
+			background: grey;
+		}
+		#container{
+			margin: 200px auto;
+			width: 610px;
+			height: 610px;
+			background: green;
+			padding: 35px;
+			font: bold 160px Arial;
+
+		}
+			div:hover{
+			cursor: pointer;
+		}
+		.block{
+			width: 200px;
+			height: 200px;
+			border: solid 1px;
+			float: left;
+			text-align: center;
+		}
+	</style>
+</head>
+<body>
+	<div id="container">
+		
+	</div>
+<script>
+	let number = ['1','2','3','4','5','6','7','8', ''];
+	let container = document.getElementById('container');
+	let allBlocks = ['0'];
+		
+	function shuffle(a,b){
+		return Math.random()-0.5;
+	};
+	
+	number.sort(shuffle);
+	
+	number.map(function(item){
+	let block = document.createElement('div');
+	block.textContent = item;
+	block.classList.add('block');
+	container.appendChild(block);
+	allBlocks.push(block);
+	});
+
+	
+
+	container.onclick = function (event){
+		let target = event.target;
+		let empty;
+		allBlocks.map(function(item){
+			if(item.textContent==''){
+				empty = item};
+		});
+		let n = allBlocks.indexOf(empty);
+		let m = allBlocks.indexOf(target);
+		if(m == n+1||m==n-1||m==n+3||m==n-3){
+			empty.textContent=target.textContent;
+			target.textContent ='';
+		}
+		allBlocks.map(function(item){
+				if(allBlocks.indexOf(item)!=0&&allBlocks.indexOf(item)!=item.textContent){
+					item.style.color = 'black';
+				};
+
+				if(allBlocks.indexOf(item) == item.textContent){
+					item.style.color = 'yellow';
+			}
+		});
+	}
+	
+
+
+
+
+
+
+</script>	
+</body>
+</html>
